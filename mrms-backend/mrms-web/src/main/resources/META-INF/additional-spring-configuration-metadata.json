@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "max-login-times",
+      "type": "java.lang.String",
+      "description": "最大错误登陆次数."
+    },
+    {
+      "name": "jwt.token.name",
+      "type": "java.lang.String",
+      "description": "token验证名称."
+    },
+    {
+      "name": "max-alive-time",
+      "type": "java.lang.Integer",
+      "description": "token 最大生存时间."
+    }
+  ]
+}

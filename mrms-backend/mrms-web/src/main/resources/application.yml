@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mrms?serverTimezone=UTC
+    username: root
+    password: xd0630
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    password: 123456
+    host: localhost
+    port: 6379
+  thymeleaf:
+    cache: false
+
+logging:
+  level:
+    root: info
+    com.cqie.graduation.mrms.base.mapper: debug
+    com.cqie.graduation.mrms.user.mapper: debug
+    com.cqie.graduation.mrms.room.mapper: debug
+    com.cqie.graduation.mrms.web.mapper: debug
+
+max-alive-time: 60
+
+jwt:
+  token:
+    name: token
