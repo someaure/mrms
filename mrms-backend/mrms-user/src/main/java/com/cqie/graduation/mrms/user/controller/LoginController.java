@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,11 +32,17 @@ public class LoginController {
 
     @PostMapping("/login")
     @ResponseBody
-    public Response login(Integer userId, String password, String verifyCode, HttpServletRequest
+    public Response login(Integer userId, String password, String verifyCode, boolean rememberMe, HttpServletRequest
             request) {
         String redisVerifyCode = (String) redisTemplate.opsForValue().get(CommonStatic.CAPTCHA + request.getRemoteAddr());
-        if (StringUtils.isAnyBlank(redisVerifyCode, verifyCode) || Objects.equals(redisVerifyCode, verifyCode)) {
-            return new Response().error("验证码过期或输入错误");
+        if (StringUtils.isBlank(redisVerifyCode)) {
+            return new Response().error("验证码过期");
+        }
+        if (StringUtils.isBlank(verifyCode)) {
+            return new Response().error("验证码不能为空");
+        }
+        if (redisVerifyCode.toLowerCase().equals(verifyCode.toLowerCase())) {
+            return new Response().error("验证码错误");
         }
         if (userId == null) {
             return new Response().error("密码不能为空");
@@ -46,14 +51,8 @@ public class LoginController {
         if (StringUtils.isBlank(password)) {
             return new Response().error("密码不能为空");
         }
-        boolean legal = userService.checkPassword(userId, password);
-
-        if (legal) {
-            String token = userService.login(userId, password);
-            return new Response().ok().data(token);
-        } else {
-            return new Response().error("账号或密码错误");
-        }
+        String token = userService.login(userId, password, rememberMe);
+        return new Response().ok().data(token);
     }
 
     @RequestMapping("/unauthorized")

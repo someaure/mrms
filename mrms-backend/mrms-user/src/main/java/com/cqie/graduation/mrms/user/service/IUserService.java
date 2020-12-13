@@ -84,9 +84,10 @@ public interface IUserService extends IService<User> {
     /**
      * 用户登录
      *
-     * @param userId   用户账号
-     * @param password 用户密码
+     * @param userId     用户账号
+     * @param password   用户密码
+     * @param rememberMe 是否永久登录
      * @return 用户token
      */
-    String login(Integer userId, String password);
+    String login(Integer userId, String password, boolean rememberMe);
 }

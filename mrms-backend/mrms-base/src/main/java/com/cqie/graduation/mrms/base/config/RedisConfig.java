@@ -23,7 +23,6 @@ public class RedisConfig {
         template.setHashKeySerializer(stringRedisSerializer);
         template.setConnectionFactory(redisConnectionFactory);
         return template;
-
     }
 
 }

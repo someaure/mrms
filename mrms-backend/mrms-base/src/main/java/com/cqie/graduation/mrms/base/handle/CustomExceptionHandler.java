@@ -8,7 +8,6 @@ import com.cqie.graduation.mrms.base.util.CommonStatic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CustomExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    Object handleControllerException(HttpServletRequest request, Throwable ex, Model model, HttpServletResponse response) {
+    Object handleControllerException(HttpServletRequest request, Throwable ex, HttpServletResponse response) {
         HttpStatus status = getStatus(request);
         log.error("{}", (Object[]) ex.getStackTrace());
         ex.printStackTrace();
@@ -37,12 +36,11 @@ public class CustomExceptionHandler {
             }
         } else {
             if (ex instanceof CustomException) {
-                model.addAttribute("message", ex.getMessage());
+                return new Response().error(ex.getMessage());
             } else {
-                model.addAttribute("message", CustomErrorCode.SYS_ERROR.getMessage());
+                return new Response().error(CustomErrorCode.SYS_ERROR.getMessage());
             }
         }
-        return new Response().error("hhi");
     }
 
 

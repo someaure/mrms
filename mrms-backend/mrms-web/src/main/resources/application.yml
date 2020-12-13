@@ -24,3 +24,5 @@ max-alive-time: 60
 jwt:
   token:
     name: token
+server:
+  port: 8080

@@ -75,10 +75,9 @@ layui.define(['laytpl', 'layer'], function (exports) {
                 : options.data;
 
             //自动给参数传入默认 token
-            options.data[request.tokenName] = request.tokenName in sendData
+            /*options.data[request.tokenName] = request.tokenName in sendData
                 ? options.data[request.tokenName]
-                : (layui.data(setter.tableName)[request.tokenName] || '');
-
+                : (layui.data(setter.tableName)[request.tokenName] || '');*/
             //自动给 Request Headers 传入 token
             options.headers[request.tokenName] = request.tokenName in options.headers
                 ? options.headers[request.tokenName]
@@ -111,6 +110,7 @@ layui.define(['laytpl', 'layer'], function (exports) {
                         , debug()
                     ].join('');
                     view.error(errorText);
+                    typeof error === 'function' && error(res);
                 }
 
                 //只要 http 状态码正常，无论 response 的 code 是否正常都执行 success

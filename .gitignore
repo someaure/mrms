@@ -1,5 +1,5 @@
 .idea
 mrms-backend/*/target
-jrebel.xml
+rebel.xml
 log
 *.iml
