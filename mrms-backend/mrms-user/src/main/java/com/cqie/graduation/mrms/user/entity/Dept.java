@@ -1,16 +1,14 @@
 package com.cqie.graduation.mrms.user.entity;
 
-import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
-  *
-  *
-  *
-  * @author xd
-  * @date 2020/12/16
-  */
+ * @author xd
+ * @date 2020/12/16
+ */
 @Data
 @NoArgsConstructor
 public class Dept {

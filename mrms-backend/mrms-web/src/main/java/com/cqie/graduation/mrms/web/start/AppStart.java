@@ -19,6 +19,21 @@ public class AppStart implements ApplicationRunner {
     @Value("${server.port}")
     private String port;
 
+    public static void main(String[] args) throws SocketException, UnknownHostException {
+        /*NetworkInterface n = NetworkInterface.getByName("eth1");
+        List<InterfaceAddress> list = n.getInterfaceAddresses();
+        InetAddress inetAddress = null;
+        for (InterfaceAddress address : list) {
+            if (address.getAddress() instanceof Inet4Address) {
+                inetAddress = address.getAddress();
+                break;
+            }
+        }
+        if (inetAddress != null) {
+            log.info(inetAddress.getHostAddress());
+        }*/
+    }
+
     @Override
     public void run(ApplicationArguments args) {
         InetAddress inetAddress = null;
@@ -37,20 +52,5 @@ public class AppStart implements ApplicationRunner {
         if (inetAddress != null) {
             log.info("主机地址:http://{}:{}", inetAddress.getHostAddress(), port);
         }
-    }
-
-    public static void main(String[] args) throws SocketException, UnknownHostException {
-        /*NetworkInterface n = NetworkInterface.getByName("eth1");
-        List<InterfaceAddress> list = n.getInterfaceAddresses();
-        InetAddress inetAddress = null;
-        for (InterfaceAddress address : list) {
-            if (address.getAddress() instanceof Inet4Address) {
-                inetAddress = address.getAddress();
-                break;
-            }
-        }
-        if (inetAddress != null) {
-            log.info(inetAddress.getHostAddress());
-        }*/
     }
 }

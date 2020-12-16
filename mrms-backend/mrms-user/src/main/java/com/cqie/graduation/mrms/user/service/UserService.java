@@ -11,7 +11,7 @@ import java.util.Set;
 public interface UserService {
     boolean checkPassword(Integer userId, String password);
 
-    abstract String login(Integer userId, String password, boolean rememberMe);
+     String login(Integer userId, String password, boolean rememberMe);
 
     User createUser(User user);
 
@@ -23,7 +23,7 @@ public interface UserService {
 
     User findByUserId(Integer userId);
 
-    abstract Set<String> findRoles(Integer userId);
+     Set<String> findRoles(Integer userId);
 
-    abstract Set<String> findPermissions(Integer userId);
+     Set<String> findPermissions(Integer userId);
 }

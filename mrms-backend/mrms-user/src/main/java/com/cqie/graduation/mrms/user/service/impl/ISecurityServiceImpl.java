@@ -1,7 +1,7 @@
 package com.cqie.graduation.mrms.user.service.impl;
 
-import com.cqie.graduation.mrms.user.util.util.RandomValidateCodeUtil;
 import com.cqie.graduation.mrms.user.service.ISecurityService;
+import com.cqie.graduation.mrms.user.util.util.RandomValidateCodeUtil;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

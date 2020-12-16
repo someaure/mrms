@@ -1,7 +1,7 @@
 package com.cqie.graduation.mrms.user.service;
 
 
-import com.cqie.graduation.mrms.user.bean.Role;
+import com.cqie.graduation.mrms.user.entity.Role;
 
 public interface RoleService {
     /**

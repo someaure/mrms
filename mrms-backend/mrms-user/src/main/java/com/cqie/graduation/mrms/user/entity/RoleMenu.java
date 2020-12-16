@@ -4,12 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-  *
-  *
-  *
-  * @author xd
-  * @date 2020/12/16
-  */
+ * @author xd
+ * @date 2020/12/16
+ */
 @Data
 @NoArgsConstructor
 public class RoleMenu {

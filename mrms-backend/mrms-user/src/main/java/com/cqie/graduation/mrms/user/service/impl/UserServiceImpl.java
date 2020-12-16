@@ -1,5 +1,6 @@
 package com.cqie.graduation.mrms.user.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cqie.graduation.mrms.base.exception.CustomErrorCode;
 import com.cqie.graduation.mrms.base.exception.CustomException;
 import com.cqie.graduation.mrms.base.util.CommonStatic;
@@ -29,9 +30,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
-    private UserMapper userMapper;
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     private final RedisTemplate<Object, Object> redisTemplate;
+    private UserMapper userMapper;
     @Value("${max-alive-time}")
     private int maxAliveTime;
 
