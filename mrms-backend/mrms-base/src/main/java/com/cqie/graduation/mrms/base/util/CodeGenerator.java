@@ -1,3 +1,5 @@
+package com.cqie.graduation.mrms.base.util;
+
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -14,8 +16,9 @@ import java.util.Scanner;
 
 /**
  * @author xd
+ * @date 2020/12/16
  */
-public class MyBatisPlusGenerator {
+public class CodeGenerator {
 
     /**
      * <p>
@@ -34,21 +37,21 @@ public class MyBatisPlusGenerator {
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 
-    public static void main(String[] args) {
+    public static void generate(String module, String prefix, boolean overWrite) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
+        gc.setOutputDir("E://workspace/mrms/mrms-backend/mrms-" + module + "/src/main/java");
         gc.setAuthor("xd");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
 
         //!!!!!!!!!! 是否覆盖
-        gc.setFileOverride(true);
+        gc.setFileOverride(overWrite);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
@@ -62,8 +65,8 @@ public class MyBatisPlusGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("mrms");
-        pc.setParent("com.cqie.graduation");
+        pc.setModuleName(module);
+        pc.setParent("com.cqie.graduation.mrms");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -83,7 +86,7 @@ public class MyBatisPlusGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/src/generate/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
@@ -127,10 +130,11 @@ public class MyBatisPlusGenerator {
         // 写于父类中的公共字段
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
+        if (StringUtils.isNotBlank(prefix)) {
+            strategy.setTablePrefix(prefix);
+        }
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
     }
-
 }
-

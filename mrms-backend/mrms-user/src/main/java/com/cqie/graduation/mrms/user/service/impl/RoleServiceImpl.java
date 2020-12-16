@@ -3,7 +3,7 @@ package com.cqie.graduation.mrms.user.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cqie.graduation.mrms.user.entity.Role;
 import com.cqie.graduation.mrms.user.mapper.RoleMapper;
-import com.cqie.graduation.mrms.user.service.RoleService;
+import com.cqie.graduation.mrms.user.service.IRoleService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @date 2020/12/16
  */
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
     @Override
     public Role createRole(Role role) {

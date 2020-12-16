@@ -67,8 +67,7 @@ layui.extend({
         }
 
         , APP_BODY = '#LAY_app_body', FILTER_TAB_TBAS = 'layadmin-layout-tabs'
-        , $ = layui.$, $win = $(window)
-        , reqAddr = "http://" + setter.hostname + ":" + setter.port + "/";
+        , $ = layui.$, $win = $(window);
 
     //初始
     if (admin.screen() < 2) admin.sideFlexible();
@@ -93,6 +92,6 @@ layui.extend({
     //对外输出
     exports('index', {
         openTabsPage: openTabsPage,
-        reqAddr: reqAddr
+        reqAddr: "http://" + setter.hostname + ":" + setter.port + "/"
     });
 });

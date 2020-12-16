@@ -18,7 +18,8 @@ logging:
     com.cqie.graduation.mrms.user.mapper: debug
     com.cqie.graduation.mrms.room.mapper: debug
     com.cqie.graduation.mrms.web.mapper: debug
-
+  pattern:
+    console:
 max-alive-time: 60
 
 jwt:
@@ -26,3 +27,8 @@ jwt:
     name: token
 server:
   port: 8080
+mybatis-plus:
+  global-config:
+    banner: false
+
+

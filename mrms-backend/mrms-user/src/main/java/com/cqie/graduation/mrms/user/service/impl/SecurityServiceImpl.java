@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  */
 @Slf4j
 @Service
-public class ISecurityServiceImpl implements ISecurityService {
+public class SecurityServiceImpl implements ISecurityService {
     @Override
     public Pair<String, BufferedImage> generateVerifyCode() {
 

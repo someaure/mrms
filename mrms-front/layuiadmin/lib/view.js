@@ -48,7 +48,7 @@ layui.define(['laytpl', 'layer'], function (exports) {
             , remove: true
         });
         //跳转到登入页
-        location.hash = '/user/login';
+        location.href = '/user/login.html';
         callback && callback();
     };
 
@@ -117,7 +117,7 @@ layui.define(['laytpl', 'layer'], function (exports) {
             , error: function (e, code) {
                 let statusCode = response.statusCode;
                 let res = e.responseJSON;
-                if (res[response.statusName] === statusCode.logout) {
+                if (res[response.statusName] == statusCode.logout) {
                     view.exit();
                 }
 

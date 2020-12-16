@@ -1,8 +1,8 @@
 package com.cqie.graduation.mrms.user.bean;
 
 import com.cqie.graduation.mrms.user.entity.User;
-import com.cqie.graduation.mrms.user.service.UserService;
-import com.cqie.graduation.mrms.user.util.util.AuthUtil;
+import com.cqie.graduation.mrms.user.service.IUserService;
+import com.cqie.graduation.mrms.user.util.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static com.cqie.graduation.mrms.base.util.CommonStatic.TOKEN;
+
 /**
  * @author xd
  */
@@ -25,8 +27,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 @Component
 public class UserRealm extends AuthorizingRealm {
-    private final static String TOKEN = "token:";
-    private final UserService userService;
+    private final IUserService userService;
     private final RedisTemplate<Object, Object> redisTemplate;
     @Value("${max-alive-time}")
     private int maxAliveTime;
@@ -37,6 +38,7 @@ public class UserRealm extends AuthorizingRealm {
      * @param token token
      * @return 是否支持
      */
+
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof BearerToken;
@@ -47,8 +49,9 @@ public class UserRealm extends AuthorizingRealm {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         Integer userId = user.getId();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roles = userService.findRoles(userId);
-        authorizationInfo.addStringPermissions(userService.findPermissions(userId));
+        Set<String> roles = user.getRoles();
+        Set<String> permissions = userService.findPermissions(roles);
+        authorizationInfo.addStringPermissions(permissions);
         authorizationInfo.addRoles(roles);
         return authorizationInfo;
     }
@@ -58,9 +61,8 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
         String tokenStr = ((BearerToken) token).getToken();
         String userId = AuthUtil.getUserId(tokenStr);
-        String key = TOKEN + tokenStr;
-        Object o = redisTemplate.opsForValue().get(TOKEN + tokenStr);
-        User user = (User) redisTemplate.opsForValue().get(TOKEN + tokenStr);
+        String key = TOKEN + userId;
+        User user = (User) redisTemplate.opsForValue().get(key);
         if (user != null) {
             redisTemplate.expire(key, maxAliveTime, TimeUnit.MINUTES);
         } else {

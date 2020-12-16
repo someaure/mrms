@@ -3,7 +3,7 @@ package com.cqie.graduation.mrms.user.controller;
 import com.cqie.graduation.mrms.base.bean.Response;
 import com.cqie.graduation.mrms.base.util.CommonStatic;
 import com.cqie.graduation.mrms.user.service.ISecurityService;
-import com.cqie.graduation.mrms.user.service.UserService;
+import com.cqie.graduation.mrms.user.service.IUserService;
 import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequiredArgsConstructor
 public class LoginController {
-    private final UserService userService;
+    private final IUserService userService;
     private final ISecurityService securityService;
     private final RedisTemplate<Object, Object> redisTemplate;
 

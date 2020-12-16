@@ -1,4 +1,4 @@
-package com.cqie.graduation.mrms.user.util.util;
+package com.cqie.graduation.mrms.user.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

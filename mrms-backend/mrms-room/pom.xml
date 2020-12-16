@@ -12,6 +12,13 @@
         <artifactId>mrms</artifactId>
         <version>1.0</version>
     </parent>
+    <dependencies>
+        <dependency>
+            <groupId>com.cqie.graduation</groupId>
+            <artifactId>mrms-base</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
