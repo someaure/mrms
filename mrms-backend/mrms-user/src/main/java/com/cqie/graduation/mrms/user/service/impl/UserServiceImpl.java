@@ -1,17 +1,16 @@
 package com.cqie.graduation.mrms.user.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cqie.graduation.mrms.base.exception.CustomErrorCode;
 import com.cqie.graduation.mrms.base.exception.CustomException;
 import com.cqie.graduation.mrms.base.util.CommonStatic;
 import com.cqie.graduation.mrms.user.entity.User;
 import com.cqie.graduation.mrms.user.mapper.UserMapper;
-import com.cqie.graduation.mrms.user.service.IUserService;
+import com.cqie.graduation.mrms.user.service.UserService;
 import com.cqie.graduation.mrms.user.util.PasswordHelper;
 import com.cqie.graduation.mrms.user.util.util.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +29,11 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl implements UserService {
+    private UserMapper userMapper;
     private final RedisTemplate<Object, Object> redisTemplate;
+    @Value("${max-alive-time}")
+    private int maxAliveTime;
 
     @Override
     public User createUser(User user) {
@@ -56,9 +58,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public User findByUserId(Integer userId) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id", userId);
-        return this.baseMapper.selectOne(queryWrapper);
+        return userMapper.selectById(userId);
     }
 
     @Override
@@ -79,25 +79,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public String login(Integer userId, String password, boolean rememberMe) {
-        User user = baseMapper.selectById(userId);
+        User user = userMapper.selectById(userId);
         if (user == null) {
             throw new CustomException(CustomErrorCode.NO_ACCOUNT);
         }
         String encryptPassword = PasswordHelper.encryptPassword(password);
         if (!encryptPassword.equals(user.getPassword())) {
-            log.info(encryptPassword);
-            log.info(user.getPassword());
             throw new CustomException(CustomErrorCode.AUTH_ERROR);
         }
-        if (user.isLocked()) {
+        if (user.getLocked()) {
             throw new CustomException(CustomErrorCode.ACCOUNT_WAS_LOCKED);
         }
 
         String token = AuthUtil.sign(String.valueOf(userId), password);
+
         if (rememberMe) {
-            redisTemplate.opsForValue().set(CommonStatic.TOKEN + token, user);
+            redisTemplate.opsForValue().set(CommonStatic.TOKEN + userId, user);
         } else {
-            redisTemplate.opsForValue().set(CommonStatic.TOKEN + token, user, 30, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(CommonStatic.TOKEN + userId, user, maxAliveTime, TimeUnit.MINUTES);
         }
         return token;
     }

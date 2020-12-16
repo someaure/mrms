@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqie.graduation.mrms.user.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.cqie.graduation.mrms.user.entity.Role">
+    <!--@mbg.generated-->
+    <!--@Table sys_role-->
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="desc" property="desc" />
+    <result column="gmt_create" property="gmtCreate" />
+    <result column="gmt_update" property="gmtUpdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, `desc`, gmt_create, gmt_update
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from sys_role
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cqie.graduation.mrms.user.entity.Role" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_role (`name`, `desc`, gmt_create, gmt_update)
+    values (#{name}, #{desc}, #{gmtCreate}, #{gmtUpdate})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cqie.graduation.mrms.user.entity.Role" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="desc != null">
+        `desc`,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="desc != null">
+        #{desc},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cqie.graduation.mrms.user.entity.Role">
+    <!--@mbg.generated-->
+    update sys_role
+    <set>
+      <if test="name != null">
+        `name` = #{name},
+      </if>
+      <if test="desc != null">
+        `desc` = #{desc},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cqie.graduation.mrms.user.entity.Role">
+    <!--@mbg.generated-->
+    update sys_role
+    set `name` = #{name},
+      `desc` = #{desc},
+      gmt_create = #{gmtCreate},
+      gmt_update = #{gmtUpdate}
+    where id = #{id}
+  </update>
+</mapper>

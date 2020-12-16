@@ -35,3 +35,4 @@ public interface RoleService {
      */
     void unCorrelationPermissions(Long roleId, Long... permissionIds);
 }
+

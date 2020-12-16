@@ -1,42 +1,45 @@
 package com.cqie.graduation.mrms.user.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
-/**
- * <p>
- *
- * </p>
- *
- * @author xd
- * @since 2020-11-10
- */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("user")
-@ToString
 public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @TableId("id")
     private Integer id;
 
-    @TableField("username")
+    /**
+     * 用户名
+     */
     private String username;
 
-    @TableField("password")
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * 锁定状态
+     */
+    private Boolean locked;
 
-    @TableField("locked")
-    private boolean locked;
+    /**
+     * 绑定带你花
+     */
+    private String phone;
+
+    /**
+     * 绑定邮箱
+     */
+    private String email;
+
+    /**
+     * 性别
+     */
+    private Boolean sex;
+
+    private Date gmtCreate;
+
+    private Date gmtUpdate;
 }

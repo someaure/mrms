@@ -47,9 +47,8 @@ layui.define(['laytpl', 'layer'], function (exports) {
             key: setter.request.tokenName
             , remove: true
         });
-
         //跳转到登入页
-        //location.hash = '/user/login';
+        location.hash = '/user/login';
         callback && callback();
     };
 
@@ -97,7 +96,6 @@ layui.define(['laytpl', 'layer'], function (exports) {
                 if (res[response.statusName] == statusCode.ok) {
                     typeof options.done === 'function' && options.done(res);
                 }
-
                 //登录状态失效，清除本地 access_token，并强制跳转到登入页
                 else if (res[response.statusName] == statusCode.logout) {
                     view.exit();
@@ -117,12 +115,17 @@ layui.define(['laytpl', 'layer'], function (exports) {
                 typeof success === 'function' && success(res);
             }
             , error: function (e, code) {
+                let statusCode = response.statusCode;
+                let res = e.responseJSON;
+                if (res[response.statusName] === statusCode.logout) {
+                    view.exit();
+                }
+
                 var errorText = [
                     '请求异常，请重试<br><cite>错误信息：</cite>' + code
                     , debug()
                 ].join('');
                 view.error(errorText);
-
                 typeof error === 'function' && error(res);
             }
         }, options));

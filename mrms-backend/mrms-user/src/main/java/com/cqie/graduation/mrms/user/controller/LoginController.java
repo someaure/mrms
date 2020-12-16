@@ -3,7 +3,7 @@ package com.cqie.graduation.mrms.user.controller;
 import com.cqie.graduation.mrms.base.bean.Response;
 import com.cqie.graduation.mrms.base.util.CommonStatic;
 import com.cqie.graduation.mrms.user.service.ISecurityService;
-import com.cqie.graduation.mrms.user.service.IUserService;
+import com.cqie.graduation.mrms.user.service.UserService;
 import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequiredArgsConstructor
 public class LoginController {
-    private final IUserService userService;
+    private final UserService userService;
     private final ISecurityService securityService;
     private final RedisTemplate<Object, Object> redisTemplate;
 
@@ -41,7 +41,7 @@ public class LoginController {
         if (StringUtils.isBlank(verifyCode)) {
             return new Response().error("验证码不能为空");
         }
-        if (redisVerifyCode.toLowerCase().equals(verifyCode.toLowerCase())) {
+        if (!redisVerifyCode.toLowerCase().equals(verifyCode.toLowerCase())) {
             return new Response().error("验证码错误");
         }
         if (userId == null) {
@@ -73,5 +73,4 @@ public class LoginController {
         redisTemplate.opsForValue().set(CommonStatic.CAPTCHA + request.getRemoteAddr(), verifyCode.getKey(), 1,
                 TimeUnit.HOURS);
     }
-
 }

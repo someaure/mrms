@@ -1,8 +1,8 @@
 package com.cqie.graduation.mrms.user.bean;
 
 import com.cqie.graduation.mrms.user.entity.User;
+import com.cqie.graduation.mrms.user.service.UserService;
 import com.cqie.graduation.mrms.user.util.util.AuthUtil;
-import com.cqie.graduation.mrms.user.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -26,11 +26,17 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class UserRealm extends AuthorizingRealm {
     private final static String TOKEN = "token:";
-    private final IUserService userService;
+    private final UserService userService;
     private final RedisTemplate<Object, Object> redisTemplate;
     @Value("${max-alive-time}")
     private int maxAliveTime;
 
+    /**
+     * 添加token 支持
+     *
+     * @param token token
+     * @return 是否支持
+     */
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof BearerToken;
@@ -53,6 +59,7 @@ public class UserRealm extends AuthorizingRealm {
         String tokenStr = ((BearerToken) token).getToken();
         String userId = AuthUtil.getUserId(tokenStr);
         String key = TOKEN + tokenStr;
+        Object o = redisTemplate.opsForValue().get(TOKEN + tokenStr);
         User user = (User) redisTemplate.opsForValue().get(TOKEN + tokenStr);
         if (user != null) {
             redisTemplate.expire(key, maxAliveTime, TimeUnit.MINUTES);
@@ -62,7 +69,7 @@ public class UserRealm extends AuthorizingRealm {
         if (!AuthUtil.verify(tokenStr, userId, user.getPassword())) {
             throw new CredentialsException("账号验证失败");
         }
-        if (Boolean.TRUE.equals(user.isLocked())) {
+        if (Boolean.TRUE.equals(user.getLocked())) {
             //帐号锁定
             throw new LockedAccountException("账号:" + userId + "  已被锁定");
         }
