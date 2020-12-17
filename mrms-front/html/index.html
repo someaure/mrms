@@ -495,15 +495,6 @@
             , setter = layui.setter
             , admin = layui.admin
             , element = layui.element
-            , reqAddr = layui.index.reqAddr;
-        admin.req({
-            url: reqAddr + "test",
-            success: function () {
-                alert("success")
-            }, error: function (res) {
-                console.log(res)
-            }
-        })
     });
 </script>
 

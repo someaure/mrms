@@ -82,7 +82,6 @@
             , form = layui.form
             , router = layui.router()
             , search = router.search
-            , reqAddr = layui.index.reqAddr
             , $verifyCodeImg = $("#verifyCodeImg");
         form.render();
 
@@ -96,7 +95,7 @@
             obj.field.rememberMe ? obj.field.rememberMe = true : obj.field.rememberMe = false;
             //请求登入接口
             admin.req({
-                url: reqAddr + 'login' //实际使用请改成服务端真实接口
+                url: '/login' //实际使用请改成服务端真实接口
                 , data: obj.field
                 , method: "post"
                 , done: function (res) {

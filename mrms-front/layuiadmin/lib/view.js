@@ -28,6 +28,8 @@ layui.define(['laytpl', 'layer'], function (exports) {
             this.container = $('#' + (id || LAY_BODY));
         };
 
+    let reqAddress = setter.hostname + ":" + setter.port;
+
     //加载中
     view.loading = function (elem) {
         elem.append(
@@ -67,6 +69,7 @@ layui.define(['laytpl', 'layer'], function (exports) {
 
         options.data = options.data || {};
         options.headers = options.headers || {};
+        options.url = reqAddress + options.url;
 
         if (request.tokenName) {
             var sendData = typeof options.data === 'string'

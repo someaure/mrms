@@ -91,7 +91,6 @@ layui.extend({
 
     //对外输出
     exports('index', {
-        openTabsPage: openTabsPage,
-        reqAddr: "http://" + setter.hostname + ":" + setter.port + "/"
+        openTabsPage: openTabsPage
     });
 });
