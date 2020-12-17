@@ -1,7 +1,9 @@
 package com.cqie.graduation.mrms.user.service.impl;
 
-import com.cqie.graduation.mrms.user.bean.Permission;
-import com.cqie.graduation.mrms.user.service.PermissionService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cqie.graduation.mrms.user.entity.Permission;
+import com.cqie.graduation.mrms.user.mapper.PermissonMapper;
+import com.cqie.graduation.mrms.user.service.IPermissionService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -11,7 +13,7 @@ import java.util.Set;
  * @date 2020/12/16
  */
 @Service
-public class PermissionServiceImpl implements PermissionService {
+public class PermissionServiceImpl extends ServiceImpl<PermissonMapper, Permission> implements IPermissionService {
     @Override
     public Permission createPermission(Permission permission) {
         return null;

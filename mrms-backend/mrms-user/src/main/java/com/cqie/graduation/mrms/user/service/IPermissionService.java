@@ -1,10 +1,11 @@
 package com.cqie.graduation.mrms.user.service;
 
-import com.cqie.graduation.mrms.user.bean.Permission;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.cqie.graduation.mrms.user.entity.Permission;
 
 import java.util.Set;
 
-public interface PermissionService {
+public interface IPermissionService extends IService<Permission> {
     /**
      * 创建权限
      *
@@ -22,6 +23,9 @@ public interface PermissionService {
 
     /**
      * 获取权限
+     *
+     * @param roles 角色
+     * @return 权限
      */
     Set<String> getPermission(Set<String> roles);
 }

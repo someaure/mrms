@@ -20,5 +20,11 @@
             <artifactId>java-jwt</artifactId>
             <version>3.11.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.3.1</version>
+        </dependency>
     </dependencies>
 </project>
