@@ -19,7 +19,7 @@
             <!-- 头部区域 -->
             <ul class="layui-nav layui-layout-left">
                 <li class="layui-nav-item layadmin-flexible" lay-unselect>
-                    <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                    <a href="javascript:" layadmin-event="flexible" title="侧边伸缩">
                         <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
                     </a>
                 </li>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                    <a href="javascript:" layadmin-event="refresh" title="刷新">
                         <i class="layui-icon layui-icon-refresh-3"></i>
                     </a>
                 </li>
@@ -50,22 +50,22 @@
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="theme">
+                    <a href="javascript:" layadmin-event="theme">
                         <i class="layui-icon layui-icon-theme"></i>
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="note">
+                    <a href="javascript:" layadmin-event="note">
                         <i class="layui-icon layui-icon-note"></i>
                     </a>
                 </li>
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="fullscreen">
+                    <a href="javascript:" layadmin-event="fullscreen">
                         <i class="layui-icon layui-icon-screen-full"></i>
                     </a>
                 </li>
                 <li class="layui-nav-item" lay-unselect>
-                    <a href="javascript:;">
+                    <a href="javascript:">
                         <cite>贤心</cite>
                     </a>
                     <dl class="layui-nav-child">
@@ -77,11 +77,11 @@
                 </li>
 
                 <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="about"><i
+                    <a href="javascript:" layadmin-event="about"><i
                             class="layui-icon layui-icon-more-vertical"></i></a>
                 </li>
                 <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
-                    <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+                    <a href="javascript:" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
                 </li>
             </ul>
         </div>
@@ -96,7 +96,7 @@
                 <ul class="layui-nav layui-nav-tree" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu"
                     lay-shrink="all">
                     <li class="layui-nav-item layui-nav-itemed" data-name="home">
-                        <a href="javascript:;" lay-direction="2" lay-tips="主页">
+                        <a href="javascript:" lay-direction="2" lay-tips="主页">
                             <i class="layui-icon layui-icon-home"></i>
                             <cite>主页</cite>
                         </a>
@@ -112,14 +112,20 @@
                             </dd>
                         </dl>
                     </li>
+                    <li class="layui-nav-item layui-nav-itemed" data-name="home">
+                        <a href="javascript:" lay-direction="2" lay-tips="菜单" lay-href="/system/menu/menu.html">
+                            <i class="layui-icon layui-icon-menu-fill"></i>
+                            <cite>菜单</cite>
+                        </a>
+                    </li>
                     <li class="layui-nav-item" data-name="component">
-                        <a href="javascript:;" lay-direction="2" lay-tips="组件">
+                        <a href="javascript:" lay-direction="2" lay-tips="组件">
                             <i class="layui-icon layui-icon-component"></i>
                             <cite>组件</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd data-name="grid">
-                                <a href="javascript:;">栅格</a>
+                                <a href="javascript:">栅格</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="list"><a lay-href="component/grid/list.html">等比例列表排列</a></dd>
                                     <dd data-name="mobile"><a lay-href="component/grid/mobile.html">按移动端排列</a></dd>
@@ -134,7 +140,7 @@
                                 <a lay-href="component/button/index.html">按钮</a>
                             </dd>
                             <dd data-name="form">
-                                <a href="javascript:;">表单</a>
+                                <a href="javascript:">表单</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="component/form/element.html">表单元素</a></dd>
                                     <dd><a lay-href="component/form/group.html">表单组合</a></dd>
@@ -165,7 +171,7 @@
                                 <a lay-href="component/auxiliar/index.html">辅助</a>
                             </dd>
                             <dd data-name="layer">
-                                <a href="javascript:;">通用弹层<span class="layui-nav-more"></span></a>
+                                <a href="javascript:">通用弹层<span class="layui-nav-more"></span></a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="list">
                                         <a lay-href="component/layer/list.html" lay-text="layer 功能演示">功能演示</a>
@@ -179,7 +185,7 @@
                                 </dl>
                             </dd>
                             <dd data-name="laydate">
-                                <a href="javascript:;">日期时间</a>
+                                <a href="javascript:">日期时间</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="demo1">
                                         <a lay-href="component/laydate/demo1.html" lay-text="layDate 功能演示一">功能演示一</a>
@@ -200,7 +206,7 @@
                                 <a lay-href="component/table/static.html">静态表格</a>
                             </dd>
                             <dd data-name="table">
-                                <a href="javascript:;">数据表格</a>
+                                <a href="javascript:">数据表格</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="simple">
                                         <a lay-href="component/table/simple.html" lay-text="">简单数据表格</a>
@@ -271,7 +277,7 @@
                                 </dl>
                             </dd>
                             <dd data-name="laypage">
-                                <a href="javascript:;">分页</a>
+                                <a href="javascript:">分页</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="demo1">
                                         <a lay-href="component/laypage/demo1.html" lay-text="layPage 功能演示一">功能演示一</a>
@@ -282,7 +288,7 @@
                                 </dl>
                             </dd>
                             <dd data-name="upload">
-                                <a href="javascript:;">上传</a>
+                                <a href="javascript:">上传</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="demo1">
                                         <a lay-href="component/upload/demo1.html" lay-text="上传功能演示一">功能演示一</a>
@@ -322,7 +328,7 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="template">
-                        <a href="javascript:;" lay-direction="2" lay-tips="页面">
+                        <a href="javascript:" lay-direction="2" lay-tips="页面">
                             <i class="layui-icon layui-icon-template"></i>
                             <cite>页面</cite>
                         </a>
@@ -344,14 +350,14 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="app">
-                        <a href="javascript:;" lay-direction="2" lay-tips="应用">
+                        <a href="javascript:" lay-direction="2" lay-tips="应用">
                             <i class="layui-icon layui-icon-app"></i>
                             <cite>应用</cite>
                         </a>
                         <dl class="layui-nav-child">
 
                             <dd data-name="content">
-                                <a href="javascript:;">内容系统</a>
+                                <a href="javascript:">内容系统</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="list"><a lay-href="app/content/list.html">文章列表</a></dd>
                                     <dd data-name="tags"><a lay-href="app/content/tags.html">分类管理</a></dd>
@@ -359,7 +365,7 @@
                                 </dl>
                             </dd>
                             <dd data-name="forum">
-                                <a href="javascript:;">社区系统</a>
+                                <a href="javascript:">社区系统</a>
                                 <dl class="layui-nav-child">
                                     <dd data-name="list"><a lay-href="app/forum/list.html">帖子列表</a></dd>
                                     <dd data-name="replys"><a lay-href="app/forum/replys.html">回帖列表</a></dd>
@@ -374,7 +380,7 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="senior">
-                        <a href="javascript:;" lay-direction="2" lay-tips="高级">
+                        <a href="javascript:" lay-direction="2" lay-tips="高级">
                             <i class="layui-icon layui-icon-senior"></i>
                             <cite>高级</cite>
                         </a>
@@ -383,7 +389,7 @@
                                 <a layadmin-event="im">LayIM 通讯系统</a>
                             </dd>
                             <dd data-name="echarts">
-                                <a href="javascript:;">Echarts集成</a>
+                                <a href="javascript:">Echarts集成</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="senior/echarts/line.html">折线图</a></dd>
                                     <dd><a lay-href="senior/echarts/bar.html">柱状图</a></dd>
@@ -393,7 +399,7 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="user">
-                        <a href="javascript:;" lay-direction="2" lay-tips="用户">
+                        <a href="javascript:" lay-direction="2" lay-tips="用户">
                             <i class="layui-icon layui-icon-user"></i>
                             <cite>用户</cite>
                         </a>
@@ -410,20 +416,20 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="set">
-                        <a href="javascript:;" lay-direction="2" lay-tips="设置">
+                        <a href="javascript:" lay-direction="2" lay-tips="设置">
                             <i class="layui-icon layui-icon-set"></i>
                             <cite>设置</cite>
                         </a>
                         <dl class="layui-nav-child">
                             <dd class="layui-nav-itemed">
-                                <a href="javascript:;">系统设置</a>
+                                <a href="javascript:">系统设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="set/system/website.html">网站设置</a></dd>
                                     <dd><a lay-href="set/system/email.html">邮件服务</a></dd>
                                 </dl>
                             </dd>
                             <dd class="layui-nav-itemed">
-                                <a href="javascript:;">我的设置</a>
+                                <a href="javascript:">我的设置</a>
                                 <dl class="layui-nav-child">
                                     <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                                     <dd><a lay-href="set/user/password.html">修改密码</a></dd>
@@ -432,7 +438,7 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item" data-name="get">
-                        <a href="javascript:;" lay-direction="2" lay-href="//www.layui.com/admin/#get" lay-tips="授权">
+                        <a href="javascript:" lay-direction="2" lay-href="//www.layui.com/admin/#get" lay-tips="授权">
                             <i class="layui-icon layui-icon-auz"></i>
                             <cite>授权</cite>
                         </a>
@@ -448,11 +454,11 @@
             <div class="layui-icon layadmin-tabs-control layui-icon-down">
                 <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
                     <li class="layui-nav-item" lay-unselect>
-                        <a href="javascript:;"></a>
+                        <a href="javascript:"></a>
                         <dl class="layui-nav-child layui-anim-fadein">
-                            <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
-                            <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
-                            <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+                            <dd layadmin-event="closeThisTabs"><a href="javascript:">关闭当前标签页</a></dd>
+                            <dd layadmin-event="closeOtherTabs"><a href="javascript:">关闭其它标签页</a></dd>
+                            <dd layadmin-event="closeAllTabs"><a href="javascript:">关闭全部标签页</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -484,10 +490,11 @@
         base: '/layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use('index', function () {
+    }).use(['index', 'element'], function () {
         var $ = layui.$
             , setter = layui.setter
             , admin = layui.admin
+            , element = layui.element
             , reqAddr = layui.index.reqAddr;
         admin.req({
             url: reqAddr + "test",

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>layuiAdmin 控制台主页一</title>
+        <meta content="webkit" name="renderer">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"
+              name="viewport">
+        <link href="/layuiadmin/layui/css/layui.css" media="all" rel="stylesheet">
+        <link href="/layuiadmin/style/admin.css" media="all" rel="stylesheet">
+    </head>
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space30">
+                <div class="layui-col-lg6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            菜单
+                        </div>
+                        <div class="layui-card-body">
+                            <fieldset class="layui-elem-field layui-field-title" style="">
+                                <legend>菜单管理</legend>
+                            </fieldset>
+                            <div id="test9" class="demo-tree demo-tree-box" style="overflow: scroll"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-lg6"></div>
+            </div>
+        </div>
+        <script src="/layuiadmin/layui/layui.js?t=1"></script>
+        <script>
+            layui.config({
+                base: '/layuiadmin/' //静态资源所在路径
+            }).extend({
+                index: 'lib/index' //主入口模块
+            }).use(['index', 'console', 'tree', 'util'], function () {
+                let tree = layui.tree
+                    , layer = layui.layer
+                    , util = layui.util
+                    , $ = layui.jquery;
+                let data1 = [{
+                    title: '江西'
+                    , id: 1
+                    , spread: true
+                    , children: [{
+                        title: '南昌'
+                        , id: 1000
+                        , spread: true
+                        , children: [{
+                            title: '青山湖区'
+                            , id: 10001
+                        }, {
+                            title: '高新区'
+                            , id: 10002
+                        }]
+                    }, {
+                        title: '九江'
+                        , id: 1001
+                    }, {
+                        title: '赣州'
+                        , id: 1002
+                    }]
+                }, {
+                    title: '广西'
+                    , id: 2
+                    , children: [{
+                        title: '南宁'
+                        , id: 2000
+                    }, {
+                        title: '桂林'
+                        , id: 2001
+                    }]
+                }, {
+                    title: '陕西'
+                    , id: 3
+                    , children: [{
+                        title: '西安'
+                        , id: 3000
+                    }, {
+                        title: '延安'
+                        , id: 3001
+                    }]
+                }]
+
+                //按钮事件
+                util.event('lay-demo', {
+                    getChecked: function (othis) {
+                        let checkedData = tree.getChecked('demoId1'); //获取选中节点的数据
+
+                        layer.alert(JSON.stringify(checkedData), {shade: 0});
+                        console.log(checkedData);
+                    }
+                    , setChecked: function () {
+                        tree.setChecked('demoId1', [12, 16]); //勾选指定节点
+                    }
+                    , reload: function () {
+                        //重载实例
+                        tree.reload('demoId1', {});
+
+                    }
+                });
+
+
+                //开启节点操作图标
+                tree.render({
+                    elem: '#test9'
+                    , data: data1
+                    , edit: ['add', 'update', 'del'] //操作节点的图标
+                    , click: function (obj) {
+                        layer.open({
+                            type: 2 //此处以iframe举例
+                            , title: '当你选择该窗体时，即会在最顶端'
+                            , area: ['390px', '260px']
+                            , shade: 0
+                            , maxmin: true
+                            , offset: [ //为了演示，随机坐标
+                                ($(window).height() - 300)
+                                , ($(window).width() - 390)
+                            ]
+                            , content: '//layer.layui.com/test/settop.html'
+                            , btn: ['继续弹出', '全部关闭'] //只是为了演示
+                            , yes: function () {
+                                $(that).click();
+                            }
+                            , btn2: function () {
+                                layer.closeAll();
+                            }
+                            , zIndex: layer.zIndex //重点1
+                            , success: function (layero) {
+                                layer.setTop(layero); //重点2
+                            }
+                        });
+                    }
+                    , operate: function (obj) {
+                        let type = obj.type; //得到操作类型：add、edit、del
+                        let data = obj.data; //得到当前节点的数据
+                        let elem = obj.elem; //得到当前节点元素
+                        //Ajax 操作
+                        let id = data.id; //得到节点索引
+                        if (type === 'add') { //增加节点
+                            //返回 key 值
+                            alert(id)
+                            return "???";
+                        } else if (type === 'update') { //修改节点
+                            console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
+                        } else if (type === 'del') { //删除节点
+
+                        }
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

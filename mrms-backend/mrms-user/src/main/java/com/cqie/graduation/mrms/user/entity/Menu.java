@@ -49,6 +49,18 @@ public class Menu implements Serializable {
     private String icon;
 
     /**
+     * 是否是叶子节点
+     */
+    @TableField("node")
+    private Boolean node;
+
+    /**
+     * 排序码
+     */
+    @TableField("sort")
+    private Integer sort;
+
+    /**
      * 资源地址
      */
     @TableField("url")

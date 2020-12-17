@@ -148,6 +148,7 @@ layui.define(function (exports) {
         ]
             , elemDataView = $('#LAY-index-dataview').children('div')
             , renderDataView = function (index) {
+            console.log(elemDataView.length)
             echartsApp[index] = echarts.init(elemDataView[index], layui.echartsTheme);
             echartsApp[index].setOption(options[index]);
             //window.onresize = echartsApp[index].resize;
